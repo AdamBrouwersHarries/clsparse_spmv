@@ -342,7 +342,7 @@ int main(int argc, char *argv[]) {
     std::cout.rdbuf(coutbuf);
     std::cout << (total_time * 1.0e-6) << std::endl;
     std::cout << "TIMING_RESULT: " << matrix_name << ", " << host_name << ", "
-              << experiment_id << ", " << adaptive_str << ","
+              << experiment_id << ", " << adaptive_str << ", "
               << (total_time * 1.0e-6) << "\n";
 
     std::cout.rdbuf(std::cerr.rdbuf());
