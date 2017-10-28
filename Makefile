@@ -36,7 +36,7 @@ LINK += -lclSPARSE
 
 # General rule to trigger the others, depend on the makefile so that everything recompiles when the makefile changes
 all: Makefile spmv.cpp spmv_vectorised.cpp spmv_adaptive.cpp $(CLSPARSE_DIR)
-	# $(CC) spmv.cpp $(INCLUDE) $(CFLAGS) $(LINK) -o spmv
+	$(CC) spmv.cpp $(INCLUDE) $(CFLAGS) $(LINK) -o spmv
 	$(CC) spmv_vectorised.cpp $(INCLUDE) $(CFLAGS) $(LINK) -o spmv_v
 	# $(CC) spmv_adaptive.cpp $(INCLUDE) $(CFLAGS) $(LINK) -o spmv_a
 
