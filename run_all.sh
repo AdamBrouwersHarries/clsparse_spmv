@@ -82,7 +82,7 @@ do
 
 	estimated_total=$(bc <<< "scale=4;(($scripttime/$i)*$taskcount)/(60*60*24)")
 	current_days=$(bc <<< "scale=4;$scripttime/(60*60*24)")
-	estimated_percentage=$(bc <<< "scale=4;($current_days*100)/($estimated_total* 100)")
+	estimated_percentage=$(bc <<< "scale=4;($current_days*100)/($estimated_total)")
 
 	echo "Estimated total days: $estimated_total - spent $current_days - i.e $estimated_percentage%" 
 	echo "Estimated total days: $estimated_total - spent $current_days - i.e $estimated_percentage%" >> runstatus.txt
