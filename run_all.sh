@@ -9,15 +9,15 @@ spmv=$2
 echo "SparseMatrixDenseVector excutable: $spmv"
 echo "SparseMatrixDenseVector excutable: $spmv" >> runstatus.txt
 
-platform=$5
+platform=$3
 echo "Platform: $platform"
 echo "Platform: $platform" >> runstatus.txt
 
-device=$6
+device=$4
 echo "Device: $device"
 echo "Device: $device" >> runstatus.txt
 
-scratchfolder=$7
+scratchfolder=$5
 echo "Scratch folder: $scratchfolder"
 echo "Scratch folder: $scratchfolder" >> runstatus.txt
 
