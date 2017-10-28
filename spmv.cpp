@@ -76,6 +76,11 @@ int main(int argc, char *argv[]) {
   std::cout.rdbuf(std::cerr.rdbuf());
 
   OptParser op("Harness for benchmarking clSPARSE's various spmv routines");
+  auto opt_platform = op.addOption<unsigned>(
+      {'p', "platform", "OpenCL platform index (default 0).", 0});
+  auto opt_device = op.addOption<unsigned>(
+      {'d', "device", "OpenCL device index (default 0).", 0});
+
   auto opt_matrix_file =
       op.addOption<std::string>({'m', "matrix", "Input matrix"});
   auto opt_matrix_name =
@@ -149,7 +154,7 @@ int main(int argc, char *argv[]) {
   }
 
   // Using first platform
-  platform_id = 0;
+  platform_id = opt_platform->get();
   cl::Platform platform = platforms[platform_id];
 
   // Get device from platform
@@ -172,7 +177,7 @@ int main(int argc, char *argv[]) {
   }
 
   // Using first device;
-  device_id = 0;
+  device_id = opt_device->get();
   cl::Device device = devices[device_id];
 
   // Create OpenCL context;

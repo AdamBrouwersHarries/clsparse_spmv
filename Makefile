@@ -35,23 +35,19 @@ endif
 LINK += -lclSPARSE
 
 # General rule to trigger the others, depend on the makefile so that everything recompiles when the makefile changes
-all: Makefile spmv.cpp spmv_vectorised.cpp spmv_adaptive.cpp $(CLSPARSE_DIR)
+all: Makefile spmv.cpp $(CLSPARSE_DIR)
 	$(CC) spmv.cpp $(INCLUDE) $(CFLAGS) $(LINK) -o spmv
-	$(CC) spmv_vectorised.cpp $(INCLUDE) $(CFLAGS) $(LINK) -o spmv_v
-	# $(CC) spmv_adaptive.cpp $(INCLUDE) $(CFLAGS) $(LINK) -o spmv_a
 
 # Clean by simply deleting the $(OBJ) and $(BIN) directories
 clean: 
 	rm -rf spmv
 	rm -rf *.tar.gz
 	rm -rf $(CLSPARSE_DIR)
-	rm *.so.1
 
 $(CLSPARSE_DIR): clSPARSE-$(CLSPARSE_V)-Linux-x64.tar.gz
 	tar -xzf clSPARSE-$(CLSPARSE_V)-Linux-x64.tar.gz
 	mv clSPARSE-$(CLSPARSE_V)-Linux-x64 clSPARSE_lib
 	mv clSPARSE_lib $(CLSPARSE_DIR)
-	ln -s $(CLSPARSE_DIR)/lib64/libCLSPARSE.so.1 ./libCLSPARSE.so.1
 
 clSPARSE-$(CLSPARSE_V)-Linux-x64.tar.gz: 
 	wget https://github.com/clMathLibraries/clSPARSE/releases/download/v$(CLSPARSE_V)/clSPARSE-$(CLSPARSE_V)-Linux-x64.tar.gz
