@@ -17,10 +17,6 @@ device=$4
 echo "Device: $device"
 echo "Device: $device" >> runstatus.txt
 
-scratchfolder=$5
-echo "Scratch folder: $scratchfolder"
-echo "Scratch folder: $scratchfolder" >> runstatus.txt
-
 host=$(hostname)
 
 # Get some unique data for the experiment ID
@@ -31,7 +27,6 @@ exID="$hsh-$now"
 start=$(date +%s)
 
 mkdir -p "results/results-$exID"
-mkdir -p "$scratchfolder/results/results-$exID"
 
 matrixcount=$(ls $datasetf | wc -l)
 taskcount=$((matrixcount)) 
@@ -42,9 +37,7 @@ i=0
 for m in $(cat $datasetf/datasets.txt);
 do
 	rdir="results/results-$exID/$m"
-	scratchrdir="$scratchfolder/$rdir"
 	mkdir -p $rdir
-	mkdir -p $scratchrdir
 
 	echo "Processing matrix: $m - $i/$taskcount" 
 	echo "Processing matrix: $m - $i/$taskcount"  >> runstatus.txt
@@ -58,7 +51,7 @@ do
 	  -f $m \
 	  -n $host \
 	  -a \
-	  -e $exID &>$scratchrdir/result_adaptive.txt
+	  -e $exID &>$rdir/result_adaptive.txt
 
 	rc=$?
 	if [[ $rc != 0 ]]; then
@@ -72,7 +65,7 @@ do
 	  -m $datasetf/$m/$m.mtx \
 	  -f $m \
 	  -n $host \
-	  -e $exID &>$scratchrdir/result_vectorized.txt
+	  -e $exID &>$rdir/result_vectorized.txt
 
 	rc=$?
 	if [[ $rc != 0 ]]; then
