@@ -101,10 +101,12 @@ int main(int argc, char *argv[]) {
   std::string experiment_id = opt_experiment_id->require();
   int iterations = opt_trials->get();
   bool adaptive = opt_adaptive->get();
+  std::string adaptive_str = adaptive ? "adaptive" : "vectorized";
   // int iterations = 30;
   // if (argc < 2) {
   //   std::cerr << "Not enough parameters. "
-  //             << "Please specify path to matrix in mtx format as parameter"
+  //             << "Please specify path to matrix in mtx
+  //             format as parameter"
   //             << std::endl;
   //   return -1;
   // } else {
@@ -339,6 +341,9 @@ int main(int argc, char *argv[]) {
 
     std::cout.rdbuf(coutbuf);
     std::cout << (total_time * 1.0e-6) << std::endl;
+    std::cout << "TIMING_RESULT: " << matrix_name << ", " << host_name << ", "
+              << experiment_id << ", " << adaptive_str << ","
+              << (total_time * 1.0e-6) << "\n";
 
     std::cout.rdbuf(std::cerr.rdbuf());
   }
