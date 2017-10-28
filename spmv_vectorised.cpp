@@ -307,6 +307,9 @@ int main(int argc, char *argv[]) {
     std::cerr << "Start : " << time_start << " End: " << time_end << std::endl;
     std::cout << "Total: " << (total_time * 1.0e-6) << std::endl;
 
+    std::cout << "TIMING_RESULT: " << (unsigned long int)(total_time * 1.0e-6)
+              << "\n";
+
     std::cout.rdbuf(coutbuf);
     std::cout << (total_time * 1.0e-6) << std::endl;
 
