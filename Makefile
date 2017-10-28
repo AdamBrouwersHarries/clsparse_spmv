@@ -45,11 +45,13 @@ clean:
 	rm -rf spmv
 	rm -rf *.tar.gz
 	rm -rf $(CLSPARSE_DIR)
+	rm *.so.1
 
 $(CLSPARSE_DIR): clSPARSE-$(CLSPARSE_V)-Linux-x64.tar.gz
 	tar -xzf clSPARSE-$(CLSPARSE_V)-Linux-x64.tar.gz
 	mv clSPARSE-$(CLSPARSE_V)-Linux-x64 clSPARSE_lib
 	mv clSPARSE_lib $(CLSPARSE_DIR)
+	ln -s $(CLSPARSE_DIR)/lib64/libCLSPARSE.so.1 ./libCLSPARSE.so.1
 
 clSPARSE-$(CLSPARSE_V)-Linux-x64.tar.gz: 
 	wget https://github.com/clMathLibraries/clSPARSE/releases/download/v$(CLSPARSE_V)/clSPARSE-$(CLSPARSE_V)-Linux-x64.tar.gz
