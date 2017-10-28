@@ -6,6 +6,7 @@
 #include <iostream>
 #include <sstream>
 #include <vector>
+#include <memory>
 
 /**
  * Base class for a command line option. Contains the basic info but no data.
