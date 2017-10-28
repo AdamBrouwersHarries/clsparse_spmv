@@ -8,8 +8,8 @@ CFLAGS = -std=c++11 -O3 -g -Wall
 HOST = $(shell hostname)
 UNAME = $(shell uname)
 CDIR = $(shell pwd)
-CLSPARSE_V = 0.8.0.0
-# CLSPARSE_V = 0.10.2.0
+# CLSPARSE_V = 0.8.0.0
+CLSPARSE_V = 0.10.2.0
 CLSPARSE_DIR = clSPARSE
 
 # Based on the clSPARSE root directory, define the include directories
@@ -36,9 +36,9 @@ LINK += -lclSPARSE
 
 # General rule to trigger the others, depend on the makefile so that everything recompiles when the makefile changes
 all: Makefile spmv.cpp spmv_vectorised.cpp spmv_adaptive.cpp $(CLSPARSE_DIR)
-	$(CC) spmv.cpp $(INCLUDE) $(CFLAGS) $(LINK) -o spmv
+	# $(CC) spmv.cpp $(INCLUDE) $(CFLAGS) $(LINK) -o spmv
 	$(CC) spmv_vectorised.cpp $(INCLUDE) $(CFLAGS) $(LINK) -o spmv_v
-	$(CC) spmv_adaptive.cpp $(INCLUDE) $(CFLAGS) $(LINK) -o spmv_a
+	# $(CC) spmv_adaptive.cpp $(INCLUDE) $(CFLAGS) $(LINK) -o spmv_a
 
 # Clean by simply deleting the $(OBJ) and $(BIN) directories
 clean: 

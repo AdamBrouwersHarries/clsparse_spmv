@@ -12,6 +12,11 @@
  * The above copyright notice and this permission notice shall be included
  * in all copies or substantial portions of the Materials.
  *
+ * MODIFICATIONS TO THIS FILE MAY MEAN IT NO LONGER ACCURATELY REFLECTS
+ * KHRONOS STANDARDS. THE UNMODIFIED, NORMATIVE VERSIONS OF KHRONOS
+ * SPECIFICATIONS AND HEADER INFORMATION ARE LOCATED AT
+ *    https://www.khronos.org/registry/
+ *
  * THE MATERIALS ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -33,8 +38,8 @@
  *       Bruce Merry, February 2013.
  *       Tom Deakin and Simon McIntosh-Smith, July 2013
  *   
- *   \version 1.2.8
- *   \date October 2015
+ *   \version 1.2.9
+ *   \date December 2015
  *
  *   Optional extension support
  *
@@ -481,7 +486,7 @@ typedef std::string STRING_CLASS;
  *  re-define the string class to match the std::string
  *  interface by defining STRING_CLASS
  */
-class CL_EXT_PREFIX__VERSION_1_1_DEPRECATED string CL_EXT_SUFFIX__VERSION_1_1_DEPRECATED
+class CL_EXT_PREFIX__VERSION_1_1_DEPRECATED string
 {
 private:
     ::size_t size_;
@@ -647,7 +652,7 @@ public:
      *  or "" if empty/unset.
      */
     const char * c_str(void) const { return (str_) ? str_ : "";}
-};
+} CL_EXT_SUFFIX__VERSION_1_1_DEPRECATED;
 typedef cl::string STRING_CLASS;
 #endif // #elif !defined(__USE_DEV_STRING) 
 
@@ -5805,7 +5810,7 @@ public:
         ::size_t buffer_slice_pitch,
         ::size_t host_row_pitch,
         ::size_t host_slice_pitch,
-        void *ptr,
+        const void *ptr,
         const VECTOR_CLASS<Event>* events = NULL,
         Event* event = NULL) const
     {
@@ -5942,7 +5947,7 @@ public:
         const size_t<3>& region,
         ::size_t row_pitch,
         ::size_t slice_pitch,
-        void* ptr,
+        const void* ptr,
         const VECTOR_CLASS<Event>* events = NULL,
         Event* event = NULL) const
     {
@@ -6962,7 +6967,7 @@ inline cl_int enqueueWriteBufferRect(
     ::size_t buffer_slice_pitch,
     ::size_t host_row_pitch,
     ::size_t host_slice_pitch,
-    void *ptr,
+    const void *ptr,
     const VECTOR_CLASS<Event>* events = NULL,
     Event* event = NULL)
 {
@@ -7060,7 +7065,7 @@ inline cl_int enqueueWriteImage(
     const size_t<3>& region,
     ::size_t row_pitch,
     ::size_t slice_pitch,
-    void* ptr,
+    const void* ptr,
     const VECTOR_CLASS<Event>* events = NULL,
     Event* event = NULL)
 {
@@ -7399,6 +7404,7 @@ template <
    typename T20,   typename T21,   typename T22,   typename T23,
    typename T24,   typename T25,   typename T26,   typename T27,
    typename T28,   typename T29,   typename T30,   typename T31
+
 >
 class KernelFunctorGlobal
 {
@@ -7452,6 +7458,7 @@ public:
         T29 t29 = NullType(),
         T30 t30 = NullType(),
         T31 t31 = NullType()
+
         )
     {
         Event event;
@@ -7487,6 +7494,7 @@ public:
         SetArg<29, T29>::set(kernel_, t29);
         SetArg<30, T30>::set(kernel_, t30);
         SetArg<31, T31>::set(kernel_, t31);
+
         
         args.queue_.enqueueNDRangeKernel(
             kernel_,
@@ -12777,6 +12785,7 @@ template <
    typename T27 = detail::NullType,   typename T28 = detail::NullType,
    typename T29 = detail::NullType,   typename T30 = detail::NullType,
    typename T31 = detail::NullType
+
 >
 struct make_kernel :
     public detail::functionImplementation_<
@@ -12788,6 +12797,7 @@ struct make_kernel :
                T20,   T21,   T22,   T23,
                T24,   T25,   T26,   T27,
                T28,   T29,   T30,   T31
+
     >
 {
 public:
@@ -12800,6 +12810,7 @@ public:
                T20,   T21,   T22,   T23,
                T24,   T25,   T26,   T27,
                T28,   T29,   T30,   T31
+
     > FunctorType;
 
     make_kernel(
@@ -12815,6 +12826,7 @@ public:
                        T20,   T21,   T22,   T23,
                        T24,   T25,   T26,   T27,
                        T28,   T29,   T30,   T31
+
            >(
             FunctorType(program, name, err)) 
     {}
@@ -12830,6 +12842,7 @@ public:
                        T20,   T21,   T22,   T23,
                        T24,   T25,   T26,   T27,
                        T28,   T29,   T30,   T31
+
            >(
             FunctorType(kernel)) 
     {}    
