@@ -189,7 +189,7 @@ int main(int argc, char *argv[]) {
   clsparseCreateResult createResult = clsparseCreateControl(queue());
   // CLSPARSE_V(createResult.status, "Failed to create clsparse control");
 
-  // clsparseEnableAsync(control, true);
+  clsparseEnableAsync(createResult.control, true);
   // if (status != CL_SUCCESS) {
   //   std::cerr << "Problem with creating clSPARSE control object"
   //             << " error [" << status << "]" << std::endl;
