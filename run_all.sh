@@ -1,6 +1,8 @@
 #/bin/bash
 echo "" > runstatus.txt
 
+export LD_LIBRARY_PATH=LD_LIBRARY_PATH:~/projects/clsparse_spmv/clSPARSE/lib64/
+
 datasetf=$1
 echo "Dataset folder: $datasetf"
 echo "Dataset folder: $datasetf" >> runstatus.txt
