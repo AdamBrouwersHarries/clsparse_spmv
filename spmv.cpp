@@ -313,6 +313,7 @@ int main(int argc, char *argv[]) {
   /**Step 4. Call the spmv algorithm */
   /** Perform 30 spmv calls - they should be fast, and this should get
    * statistical accuracy... */
+  std::vector<cl_ulong> runtimes;
   for (int i = 0; i < iterations; i++) {
     status = clsparseScsrmv(&alpha, &A, &x, &beta, &y, createResult.control);
     if (status != clsparseSuccess) {
@@ -346,12 +347,18 @@ int main(int argc, char *argv[]) {
 
     std::cout.rdbuf(coutbuf);
     std::cout << (total_time * 1.0e-6) << std::endl;
+    runtimes.push_back(total_time * 1.0e-6);
     std::cout << "TIMING_RESULT: " << matrix_name << ", " << host_name << ", "
               << experiment_id << ", " << adaptive_str << ", "
-              << (total_time * 1.0e-6) << "\n";
+              << "raw_result, " << (total_time * 1.0e-6) << "\n";
 
     std::cout.rdbuf(std::cerr.rdbuf());
   }
+  sort(runtimes.begin(), runtimes.end());
+  cl_ulong median = runtimes[runtimes.size() / 2];
+  std::cout << "TIMING_RESULT: " << matrix_name << ", " << host_name << ", "
+            << experiment_id << ", " << adaptive_str << ", "
+            << "median_result, " << median << "\n";
 
   /** Step 5. Close & release resources */
   status = clsparseReleaseControl(createResult.control);
