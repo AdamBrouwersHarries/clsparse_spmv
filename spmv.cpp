@@ -352,13 +352,13 @@ int main(int argc, char *argv[]) {
               << experiment_id << ", " << adaptive_str << ", "
               << "raw_result, " << (total_time * 1.0e-6) << "\n";
 
-    std::cout << "insert into TABLE_NAME (time, kernel, host, matrix, "
+    std::cout << "INSERT INTO table_name (time, kernel, host, matrix, "
                  "statistic, experiment_id) values ("
               << (total_time * 1.0e-6) << ", "
               << "\"" << adaptive_str << "\", "
               << "\"" << host_name << "\", "
               << "\"" << matrix_name << "\", "
-              << "\"RAW_RESULT\", \"" << experiment_id << "\");";
+              << "\"RAW_RESULT\", \"" << experiment_id << "\");\n";
 
     std::cout.rdbuf(std::cerr.rdbuf());
   }
@@ -367,13 +367,13 @@ int main(int argc, char *argv[]) {
   cl_ulong median = runtimes[runtimes.size() / 2];
   std::cout.rdbuf(coutbuf);
 
-  std::cout << "insert into TABLE_NAME (time, kernel, host, matrix, "
+  std::cout << "INSERT INTO table_name (time, kernel, host, matrix, "
                "statistic, experiment_id) values ("
             << (median * 1.0e-6) << ", "
             << "\"" << adaptive_str << "\", "
             << "\"" << host_name << "\", "
             << "\"" << matrix_name << "\", "
-            << "\"MEDIAN_RESULT\", \"" << experiment_id << "\");";
+            << "\"MEDIAN_RESULT\", \"" << experiment_id << "\");\n";
   std::cout.rdbuf(std::cerr.rdbuf());
 
   /** Step 5. Close & release resources */
