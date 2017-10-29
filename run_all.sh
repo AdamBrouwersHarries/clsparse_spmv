@@ -28,7 +28,7 @@ start=$(date +%s)
 
 mkdir -p "results/results-$exID"
 
-matrixcount=$(ls $datasetf | wc -l)
+matrixcount=$(cat $datasetf/datasets.txt | wc -l)
 taskcount=$((matrixcount)) 
 echo "taskcount: $taskcount"
 echo "taskcount: $taskcount" >> runstatus.txt
