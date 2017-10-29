@@ -14,6 +14,6 @@ csvf=$tdir/results.csv
 # grep the results from the folder recursively, 
 # and subsitute various parts of it
 
-grep -ra "TIMING_RESULT" $resdir | sed "s/.*TIMING_RESULT\:/TIMING_RESULT\:/g" > $csvf
+grep -ra "TIMING_RESULT" $resdir | sed "s/.*TIMING_RESULT\: //g" > $csvf
 
 cp $csvf .
