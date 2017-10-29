@@ -347,18 +347,22 @@ int main(int argc, char *argv[]) {
 
     std::cout.rdbuf(coutbuf);
     std::cout << (total_time * 1.0e-6) << std::endl;
-    runtimes.push_back(total_time * 1.0e-6);
+    runtimes.push_back(total_time);
     std::cout << "TIMING_RESULT: " << matrix_name << ", " << host_name << ", "
               << experiment_id << ", " << adaptive_str << ", "
               << "raw_result, " << (total_time * 1.0e-6) << "\n";
 
     std::cout.rdbuf(std::cerr.rdbuf());
   }
+
   sort(runtimes.begin(), runtimes.end());
   cl_ulong median = runtimes[runtimes.size() / 2];
+  std::cout.rdbuf(coutbuf);
+
   std::cout << "TIMING_RESULT: " << matrix_name << ", " << host_name << ", "
             << experiment_id << ", " << adaptive_str << ", "
-            << "median_result, " << median << "\n";
+            << "median_result, " << (median * 1.0e-6) << "\n";
+  std::cout.rdbuf(std::cerr.rdbuf());
 
   /** Step 5. Close & release resources */
   status = clsparseReleaseControl(createResult.control);
