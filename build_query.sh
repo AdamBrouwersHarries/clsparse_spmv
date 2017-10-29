@@ -16,6 +16,6 @@ qfile=$tdir/query.sql
 # grep the results from the folder recursively, 
 # and subsitute various parts of it
 
-grep -r "INSERT" $resdir | sed "s/.*INSERT/INSERT/g" | sed "s/table_name/$table/g" > > $qfile
+grep -r "INSERT" $resdir | sed "s/.*INSERT/INSERT/g" | sed "s/table_name/$table/g" > $qfile
 
 cp $qfile .
